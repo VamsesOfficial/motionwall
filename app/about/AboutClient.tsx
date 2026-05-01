@@ -4,14 +4,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import profileImg from "./aku.jpeg";
 
-
 const OWNER = {
-  name: "Ketut Agus", 
+  name: "Ketut Agus",
   username: "@Agus",
   role: "Full-Stack Developer & Wallpaper Curator",
-  bio: "Halo! Saya adalah developer dan kurator di balik MotionWall — platform live wallpaper 4K gratis. Passion saya adalah menghadirkan wallpaper sinematik berkualitas tinggi yang bisa dinikmati semua orang, gratis.",
-  bio2: "MotionWall dibangun dengan Next.js, Tailwind, dan banyak ☕ kopi. Semua konten bersumber dari komunitas dan tersedia bebas untuk penggunaan personal.",
-  // Ganti dengan URL foto asli kamu, atau gunakan avatar placeholder
+  bio: "Halo! Saya Ketut Agus — developer dan kurator di balik MotionWall. Saya membangun platform ini karena frustrasi dengan situs wallpaper yang penuh iklan, loading lambat, dan konten berkualitas rendah. Misi saya sederhana: hadirkan wallpaper 4K sinematik terbaik, gratis, tanpa drama.",
+  bio2: "MotionWall dibangun dari nol menggunakan Next.js, Tailwind CSS, dan banyak sesi begadang. Setiap wallpaper dikurasi secara manual — tidak ada bot, tidak ada spam. Hanya visual berkualitas tinggi yang layak jadi latar layarmu.",
   avatarUrl: profileImg.src,
   socials: [
     {
@@ -40,16 +38,18 @@ const OWNER = {
     },
   ],
   stats: [
-    { label: "Wallpapers", value: "8.950+" },
-    { label: "Kategori", value: "50+" },
-    { label: "Downloads", value: "∞" },
-    { label: "License", value: "Free" },
+    { label: "Wallpapers", value: "200+", desc: "dikurasi manual" },
+    { label: "Kategori", value: "12", desc: "tema berbeda" },
+    { label: "Resolusi", value: "4K", desc: "semua konten" },
+    { label: "Harga", value: "Gratis", desc: "selamanya" },
   ],
+  techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion", "Vercel"],
 };
 
 export default function AboutClient() {
   return (
     <div style={{ paddingTop: 64, minHeight: "100vh" }}>
+
       {/* Hero Section */}
       <section
         style={{
@@ -57,6 +57,9 @@ export default function AboutClient() {
           overflow: "hidden",
           padding: "clamp(60px,10vh,120px) clamp(16px,4vw,32px) clamp(48px,8vh,80px)",
           textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         {/* Background orbs */}
@@ -77,14 +80,14 @@ export default function AboutClient() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          style={{ position: "relative", zIndex: 1 }}
+          style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}
         >
-          {/* Avatar */}
+          {/* Avatar — centered */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ display: "inline-block", marginBottom: 28 }}
+            style={{ marginBottom: 28 }}
           >
             <div
               style={{
@@ -93,8 +96,11 @@ export default function AboutClient() {
                 borderRadius: "50%",
                 background: "linear-gradient(135deg, #7b6ff0, #5bb8ff)",
                 padding: 3,
-                display: "inline-block",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 boxShadow: "0 0 60px rgba(123,111,240,0.35)",
+                margin: "0 auto",
               }}
             >
               <div
@@ -110,18 +116,16 @@ export default function AboutClient() {
                   position: "relative",
                 }}
               >
-                {/* Gunakan img src asli di sini — atau avatar SVG */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={OWNER.avatarUrl}
                   alt={OWNER.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   onError={(e) => {
-                    // Fallback emoji jika gambar gagal load
                     (e.currentTarget as HTMLImageElement).style.display = "none";
                   }}
                 />
-                <span style={{ fontSize: "clamp(36px,8vw,56px)", position: "absolute" }}></span>
+                <span style={{ fontSize: "clamp(36px,8vw,56px)", position: "absolute" }}>👤</span>
               </div>
             </div>
           </motion.div>
@@ -158,10 +162,11 @@ export default function AboutClient() {
               key={stat.label}
               style={{ padding: "24px 20px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 20, textAlign: "center" }}
             >
-              <p style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(24px,4vw,36px)", fontWeight: 800, color: "#a09cff", letterSpacing: "-0.02em", marginBottom: 6 }}>
+              <p style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(24px,4vw,36px)", fontWeight: 800, color: "#a09cff", letterSpacing: "-0.02em", marginBottom: 4 }}>
                 {stat.value}
               </p>
-              <p style={{ fontSize: 12, color: "#6b6b80", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase" }}>{stat.label}</p>
+              <p style={{ fontSize: 12, color: "#6b6b80", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 4 }}>{stat.label}</p>
+              <p style={{ fontSize: 11, color: "#3d3d50" }}>{stat.desc}</p>
             </div>
           ))}
         </motion.div>
@@ -176,7 +181,7 @@ export default function AboutClient() {
           style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 24, padding: "clamp(24px,4vw,40px)" }}
         >
           <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 12, fontWeight: 600, color: "#6b6b80", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 20 }}>
-            Tentang
+            Tentang Saya
           </h2>
           <p style={{ fontSize: "clamp(14px,1.5vw,16px)", color: "#c0c0d0", lineHeight: 1.8, marginBottom: 20, fontWeight: 300 }}>
             {OWNER.bio}
@@ -184,6 +189,50 @@ export default function AboutClient() {
           <p style={{ fontSize: "clamp(14px,1.5vw,16px)", color: "#6b6b80", lineHeight: 1.8, fontWeight: 300 }}>
             {OWNER.bio2}
           </p>
+
+          {/* Tech stack */}
+          <div style={{ marginTop: 28, paddingTop: 24, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+            <p style={{ fontSize: 11, color: "#3d3d50", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Dibangun dengan</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {OWNER.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  style={{ padding: "4px 12px", borderRadius: 20, background: "rgba(123,111,240,0.08)", border: "1px solid rgba(123,111,240,0.15)", fontSize: 12, color: "#a09cff", fontWeight: 500 }}
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Tentang MotionWall */}
+      <section style={{ maxWidth: 700, margin: "0 auto", padding: "0 clamp(16px,4vw,32px) 60px" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 24, padding: "clamp(24px,4vw,40px)" }}
+        >
+          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 12, fontWeight: 600, color: "#6b6b80", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 20 }}>
+            Tentang MotionWall
+          </h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {[
+              { icon: "🎬", title: "Kurasi Manual", desc: "Setiap wallpaper dipilih sendiri — bukan hasil scraping otomatis. Kalau tidak layak, tidak masuk." },
+              { icon: "🆓", title: "Gratis Selamanya", desc: "Tidak ada paywall, tidak ada akun wajib, tidak ada iklan tersembunyi. Unduh langsung, pakai langsung." },
+              { icon: "⚡", title: "Cepat & Ringan", desc: "Dioptimasi untuk loading cepat meski resolusi 4K. Karena wallpaper bagus tidak harus bikin browser berat." },
+            ].map((item) => (
+              <div key={item.title} style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+                <span style={{ fontSize: 22, flexShrink: 0, marginTop: 2 }}>{item.icon}</span>
+                <div>
+                  <p style={{ fontFamily: "'Syne', sans-serif", fontWeight: 600, fontSize: 15, color: "#f0f0f5", marginBottom: 4 }}>{item.title}</p>
+                  <p style={{ fontSize: 13, color: "#6b6b80", lineHeight: 1.7, fontWeight: 300 }}>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </section>
 
@@ -265,7 +314,7 @@ export default function AboutClient() {
           © {new Date().getFullYear()} <span style={{ color: "#7b6ff0", fontWeight: 600 }}>MotionWall</span> by {OWNER.name}. All rights reserved.
         </p>
         <p style={{ fontSize: 12, color: "#3d3d50", marginTop: 8 }}>
-          Konten wallpaper bersumber dari komunitas open-source untuk penggunaan personal.
+          Wallpaper 4K gratis untuk penggunaan personal. Dibuat dengan ❤️ dari Bali.
         </p>
         <Link href="/" style={{ textDecoration: "none" }}>
           <motion.div
