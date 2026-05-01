@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./app/ab/bb/aku.jpeg" width="120" style="border-radius:999px;" />
+<img src="./app/about/aku.jpeg" width="120" style="border-radius:999px;" />
 
 # MotionWall
 
